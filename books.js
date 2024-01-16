@@ -22,8 +22,7 @@ function renderBooks(){
               <i class="fas fa-star-half-alt"></i>
             </div>
             <div class="book__price">
-              <span class="book__price--normal">$${book.originalPrice}
-              </span> $${book.salePrice}
+              <span>$${book.originalPrice.toFixed(2)} </span>
             </div>
           </div>`
     
@@ -33,9 +32,15 @@ function renderBooks(){
 
   // The innerHTML of Books will be transfered to bookshtml which will have the book div information 
   booksWrapper.innerHTML = booksHtml;
-  console.log(booksHtml); 
   
 }
+
+function filterBooks(event) {
+  if (event.target.value === "LOW_TO_HIGH"){
+    console.log("Sort from low to high")
+  }
+}
+
 // Set timeout is used so that the value is called at the end of the cycle. 
 setTimeout(() => {
   renderBooks();
