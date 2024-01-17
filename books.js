@@ -1,9 +1,16 @@
 // Creating a function 
-function renderBooks(){
+function renderBooks(filter){
   // Creating a const that will call the data from the books class
   const booksWrapper = document.querySelector(".books");
   // Calling the getbooks fake data and naming it under books varibale 
   const books = getBooks();
+  
+  
+  if (filter === 'LOW_TO_HIGH' ){
+    console.log(filter)
+    const filteredBooks = books.sort((a, b) => (a.originalPrice) - (b.originalPrice));
+    console.log(filteredBooks)
+  }
   
   // Creating a array that will call the book data and is called under a new const called bookshtml 
  const booksHtml = books.map( book => {
@@ -36,9 +43,7 @@ function renderBooks(){
 }
 
 function filterBooks(event) {
-  if (event.target.value === "LOW_TO_HIGH"){
-    console.log("Sort from low to high")
-  }
+    renderBooks(event.target.value)
 }
 
 // Set timeout is used so that the value is called at the end of the cycle. 
