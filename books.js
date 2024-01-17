@@ -7,11 +7,17 @@ function renderBooks(filter){
   
   
   if (filter === 'LOW_TO_HIGH' ){
-    console.log(filter)
     const filteredBooks = books.sort((a, b) => (a.originalPrice) - (b.originalPrice));
-    console.log(filteredBooks)
   }
-  
+  else if (filter === 'HIGH_TO_LOW' ){
+  const filteredBooks = books.sort((a, b) => (b.originalPrice) - (a.originalPrice));
+  }
+  else if (filter === 'RATING'){
+    const filteredBooks = books.sort((a, b) => (b.rating) - (a.rating));
+  }
+
+
+
   // Creating a array that will call the book data and is called under a new const called bookshtml 
  const booksHtml = books.map( book => {
     return `<div class="book">
@@ -22,11 +28,7 @@ function renderBooks(filter){
               ${book.title}
             </div>
             <div class="book__ratings">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
+              ${ratingsHTML(book.rating)}
             </div>
             <div class="book__price">
               <span>$${book.originalPrice.toFixed(2)} </span>
@@ -42,14 +44,33 @@ function renderBooks(filter){
   
 }
 
+// Create a function filter books which will take an event. 
+// It will target the event target value from the renderBooks. 
 function filterBooks(event) {
     renderBooks(event.target.value)
+}
+
+function ratingsHTML(rating){
+  let ratingHTML = '';
+
+  for (let i =0; i < Math.floor(rating); i++){
+    ratingHTML += '<i class="fas fa-star"></i>\n'
+  }
+
+  if (!Number.isInteger(rating)){
+    ratingHTML += '<i class="fas fa-star-half-alt"></i>\n'
+  }
+
+  return ratingHTML;
 }
 
 // Set timeout is used so that the value is called at the end of the cycle. 
 setTimeout(() => {
   renderBooks();
 });
+
+
+
 
 
 // FAKE DATA
