@@ -50,17 +50,21 @@ function filterBooks(event) {
     renderBooks(event.target.value)
 }
 
+// Create a function called ratingsHTML which will take in the rating value from the variable
 function ratingsHTML(rating){
+  // Create a variable with an empty string
   let ratingHTML = '';
 
+  // Loop through all the ratings 
   for (let i =0; i < Math.floor(rating); i++){
+    // If the rating in decimal, the number will round down due to the math.floor function 
     ratingHTML += '<i class="fas fa-star"></i>\n'
   }
-
+  // If the number is not in integer, return half star
   if (!Number.isInteger(rating)){
     ratingHTML += '<i class="fas fa-star-half-alt"></i>\n'
   }
-
+  // Return the variable 
   return ratingHTML;
 }
 
