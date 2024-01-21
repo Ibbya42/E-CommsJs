@@ -31,7 +31,7 @@ function renderBooks(filter){
               ${ratingsHTML(book.rating)}
             </div>
             <div class="book__price">
-            <span class="book__price--normal">$59.95</span> $14.95 </span>
+              ${priceHTML(book.originalPrice, book.salePrice)}
             </div>
           </div>`
     
@@ -42,6 +42,16 @@ function renderBooks(filter){
   // The innerHTML of Books will be transfered to bookshtml which will have the book div information 
   booksWrapper.innerHTML = booksHtml;
   
+}
+
+// function to get price for book for both on sale and nonsale products. 
+function priceHTML(originalPrice , salePrice ){
+  if (!salePrice){
+    return `${originalPrice.toFixed(2)}`
+  }
+  else {
+    return `<span class="book__price--normal">${originalPrice.toFixed(2)}</span> ${salePrice.toFixed(2)} </span>` 
+  }
 }
 
 // Create a function filter books which will take an event. 
@@ -72,8 +82,6 @@ function ratingsHTML(rating){
 setTimeout(() => {
   renderBooks();
 });
-
-
 
 
 
