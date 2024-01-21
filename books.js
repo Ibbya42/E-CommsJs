@@ -31,7 +31,7 @@ function renderBooks(filter){
               ${ratingsHTML(book.rating)}
             </div>
             <div class="book__price">
-              <span>$${book.originalPrice.toFixed(2)} </span>
+            <span class="book__price--normal">$59.95</span> $14.95 </span>
             </div>
           </div>`
     
