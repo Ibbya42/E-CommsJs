@@ -5,7 +5,7 @@ async function renderBooks(filter){
   // Calling the getbooks fake data and naming it under books varibale 
   const books = await getBooks();
   
-  
+  // If else statment to sort out the filter by lowest/highest price, high to low and rating
   if (filter === 'LOW_TO_HIGH' ){
     const filteredBooks = books.sort((a, b) => ( a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice));
   }
@@ -46,10 +46,12 @@ async function renderBooks(filter){
 
 // function to get price for book for both on sale and nonsale products. 
 function priceHTML(originalPrice , salePrice ){
+  // If there is no sale price, only return the original price
   if (!salePrice){
     return `${originalPrice.toFixed(2)}`
   }
   else {
+    // Return both prices if there is a sale price
     return `<span class="book__price--normal">${originalPrice.toFixed(2)}</span> ${salePrice.toFixed(2)} </span>` 
   }
 }
